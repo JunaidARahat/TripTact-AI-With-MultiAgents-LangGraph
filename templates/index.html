@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent TripTact AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ffe9;
+            border: 1px solid #c6ecc6;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TripTact AI</h1>
+        <form method="POST">
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <label for="city">Enter the city for your day trip:</label>
+            <input type="text" id="city" name="city" placeholder="e.g., Paris" value="{{ city if city else '' }}" required>
+
+            <label for="interests">Enter your interests (comma-separated):</label>
+            <textarea id="interests" name="interests" placeholder="e.g., museums, parks, cafes" required>{{ interests if interests else '' }}</textarea>
+
+            <button type="submit">Generate Itinerary</button>
+        </form>
+
+        {% if itinerary %}
+            <div class="result">
+                <h2>Your Itinerary:</h2>
+                <p>{{ itinerary }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
